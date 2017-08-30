@@ -26,18 +26,6 @@ var server = http.createServer(function(req, res){
   fs.exists(filepath, function(file_exists){
     if(file_exists){
 
-      //read and serve
-      // readFile asynchronously reads the file and when done, it fires the callback function
-      // fs.readFile(filepath, function(error, content) {
-      //   if(error) {
-      //     res.writeHead(500);
-      //     res.end();
-      //   } else {
-      //     res.writeHead(200, {'Content-Type' : contentType});
-      //     res.end(content, 'utf-8');
-      //   }
-      // })
-
       /**
       Tired of filling the buffer by readfile() method?
       Let's fasten up things

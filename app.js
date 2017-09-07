@@ -13,7 +13,7 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser()); // session management
 
-//development mode
+// Setting mode -- development or production
 var env = process.env.NODE_ENV || 'development';
 if(env === 'development') {
   // dev specific settings
@@ -35,5 +35,13 @@ require('./routes/routes.js')(express,app);
 
 app.listen(3000, function(){
   console.log('SkyChat working on port 3000');
-  console.log('Node: ' +env);
+  console.log('Mode: ' +env);
+})
+
+app.set('port', process.env.PORT || 3000);
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+server.listen(app.get('port'), function(){
+  console.log('SkyChat on port: ' + app.get('port'));
 })
